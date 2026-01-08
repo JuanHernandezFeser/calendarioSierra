@@ -39,11 +39,13 @@
         <!-- <button onclick=abrirModalReservas()>
             Nueva Reserva
         </button> -->
-        <button type="button" class="btn btn-success" onclick=abrirModalReservas()>Nueva Reserva</button>
+        <div>
+            <button type="button" class="btn btn-success" onclick=abrirModalReservas()>Nueva Reserva</button>
+            <button type="button" class="btn btn-danger" onclick=abrirModalBloquear()>Bloquear Fechas</button>
+        </div>
         <!-- <button onclick=abrirModalBloquear()>
             Bloquear Fechas
         </button> -->
-        <button type="button" class="btn btn-danger" onclick=abrirModalBloquear()>Bloquear Fechas</button>
     </div>
 
     <!-- MODAL RESERVAS-->
@@ -66,6 +68,24 @@
             <input type="text" id="nombre" placeholder="Nombre">
             <input type="text" id="apellido" placeholder="Apellido">
             <input type="text" id="telefono" placeholder="Teléfono">
+
+            <div class="color-options" id="colorOptions" style="display:none;">
+                <label data-color="1">
+                    <input type="radio" name="color" value="#ff3d87">
+                    <span class="color-box" style="background:#ff3d87"></span>
+                </label>
+
+                <label data-color="2">
+                    <input type="radio" name="color" value="#68a0e9">
+                    <span class="color-box" style="background:#68a0e9"></span>
+                </label>
+
+                <label data-color="3">
+                    <input type="radio" name="color" value="#067006">
+                    <span class="color-box" style="background:#067006"></span>
+                </label>
+            </div>
+
 
             <button onclick="guardarReserva()">Guardar</button>
             <button onclick="cerrarModalReservas()">Cancelar</button>
@@ -97,6 +117,7 @@
     <!-- MODAL INFORMACIÓN RESERVA-->
 
 </body>
+
 <script src="scripts.js" defer></script>
 
 </html>

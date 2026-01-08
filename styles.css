@@ -1,6 +1,13 @@
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
+    height: 100vh;
+}
+
+.container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
 
 .calendar-wrapper {
@@ -51,4 +58,30 @@ body {
 .modal-content button {
     width: 100%;
     margin-top: 10px;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid #ccc;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .color-box {
+  border: 3px solid black;
+}
+
+.fin-de-semana {
+    background-color: #f3f3f3 !important;
 }
