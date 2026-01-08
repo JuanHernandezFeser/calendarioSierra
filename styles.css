@@ -8,7 +8,7 @@ body {
 }
 
 .calendar {
-    height: 400px;
+    height: fit-content;
     border: 1px solid #ccc;
 }
 
@@ -16,6 +16,14 @@ body {
 .fc-timegrid-axis,
 .fc-timegrid-slot-label {
     display: none;
+}
+
+.fc-scroller {
+  overflow: hidden !important;
+}
+
+.fc-view-harness, .fc-view-harness-passive {
+    height: 100% !important;
 }
 
 /* modal */

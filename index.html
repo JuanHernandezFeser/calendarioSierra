@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,36 +20,30 @@
 <body>
 
     <div class="container">
+        <div class="nav-calendarios">
+            <button id="prevBtn" type="button" class="btn btn-warning">‹</button>
+            <button id="nextBtn" type="button" class="btn btn-warning">›</button>
+            <button id="todayBtn" type="button" class="btn btn-secondary">Hoy</button>
+        </div>
+        <br>
         <div class="calendar-wrapper">
             <h2>ONOKE</h2>
             <div id="cal1" class="calendar"></div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <div class="calendar-wrapper">
             <h2>ASIKE</h2>
             <div id="cal2" class="calendar"></div>
         </div>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <button onclick=abrirModalReservas()>
+        <!-- <button onclick=abrirModalReservas()>
             Nueva Reserva
-        </button>
-        <button type="button" class="btn btn-success">Success</button>
-        <button onclick=abrirModalBloquear()>
+        </button> -->
+        <button type="button" class="btn btn-success" onclick=abrirModalReservas()>Nueva Reserva</button>
+        <!-- <button onclick=abrirModalBloquear()>
             Bloquear Fechas
-        </button>
-        <button type="button" class="btn btn-danger">Danger</button>
+        </button> -->
+        <button type="button" class="btn btn-danger" onclick=abrirModalBloquear()>Bloquear Fechas</button>
     </div>
 
     <!-- MODAL RESERVAS-->
@@ -101,4 +98,5 @@
 
 </body>
 <script src="scripts.js" defer></script>
+
 </html>

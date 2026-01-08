@@ -2,22 +2,51 @@ let calendarioActivo = null
 
 const calendarios = []
 
+//FUNCIONES FLECHAS NEXT Y PREV
+document.getElementById("nextBtn").addEventListener("click", () => {
+    console.log("DATO 1")
+    console.log(calendarios[1].getDate());
+    calendarios[1].next();
+
+    const fecha = calendarios[1].getDate();
+    console.log("DATO 2")
+    console.log(fecha);
+    calendarios[2].gotoDate(fecha);
+
+});
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+    calendarios[1].prev();
+
+    const fecha = calendarios[1].getDate();
+    calendarios[2].gotoDate(fecha);
+
+});
+
+// FUNCION BOTON HOY
+document.getElementById("todayBtn").addEventListener("click", () => {
+  const hoy = new Date();
+
+  calendarios[1].gotoDate(hoy);
+  calendarios[2].gotoDate(hoy);
+
+});
+
 function crearCalendario(id, casaId) {
     const calendar = new FullCalendar.Calendar(
         document.getElementById(id),
         {
-            initialView: "timeGridWeek",
+            initialView: "dayGridWeek",
             locale: "es",
-            height: "100%",
+            height: "auto",
 
             selectable: true,
             selectMirror: true,
 
-            allDaySlot: true,
-            slotDuration: { days: 1 },
+            allDaySlot: false,
 
             headerToolbar: {
-                left: "prev,next",
+                left: "",
                 center: "title",
                 right: ""
             },
