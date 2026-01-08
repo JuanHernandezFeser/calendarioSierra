@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.calendar-wrapper {
+    width: 50%;
+}
+
+.calendar {
+    height: 400px;
+    border: 1px solid #ccc;
+}
+
+/* ocultar horas */
+.fc-timegrid-axis,
+.fc-timegrid-slot-label {
+    display: none;
+}
+
+/* modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 6px;
+}
+
+.modal-content input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    width: 100%;
+    margin-top: 10px;
+}
