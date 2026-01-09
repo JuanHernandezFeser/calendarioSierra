@@ -449,30 +449,30 @@ async function generarVoucher() {
         return
     }
 
-    const doc = new jsPDF({ orientation: 'landscape' })
+    const doc = new jsPDF({ orientation: 'landscape', format: 'a5' })
     // Layout: border, title, image to the right, and bold labels
     const pageW = doc.internal.pageSize.getWidth()
     const pageH = doc.internal.pageSize.getHeight()
-    // border
+    // border (compact margins)
     doc.setLineWidth(1)
-    doc.rect(8, 8, pageW - 16, pageH - 16)
+    doc.rect(5, 5, pageW - 10, pageH - 10)
 
     // title (más grande)
-    doc.setFontSize(20)
+    doc.setFontSize(18)
     doc.setFont('helvetica', 'bold')
-    doc.text('Voucher de Reserva', 14, 26)
+    doc.text('Voucher de Reserva', 10, 20)
 
-    // Image placement (mucho más grande y más a la derecha, dentro del borde)
-    const imgW = Math.min(pageW * 0.72, pageW - 40)
+    // Image placement (mucho más grande - 85% del ancho)
+    const imgW = Math.min(pageW * 0.85, pageW - 20)
     const imgH = imgW * 0.6
-    const imgX = pageW - imgW - 12
-    const imgY = 16
+    const imgX = pageW - imgW - 6
+    const imgY = 12
 
-    doc.setFontSize(14)
-    let y = 56
+    doc.setFontSize(12)
+    let y = 45
 
-    const labelX = 26
-    const valueX = 90
+    const labelX = 12
+    const valueX = 70
 
     const formatCurrency = (v) => {
         const n = parseFloat(v)
@@ -514,7 +514,7 @@ async function generarVoucher() {
         console.warn('No se pudo cargar assets/foto.jpg automáticamente:', e)
         if (window.VOUCHER_IMAGE_DATAURL) {
             try {
-                doc.addImage(window.VOUCHER_IMAGE_DATAURL, 'JPEG', 150, 8, 40, 22)
+                doc.addImage(window.VOUCHER_IMAGE_DATAURL, 'JPEG', 135, 8, 62, 39)
             } catch (err) {
                 console.warn('addImage con VOUCHER_IMAGE_DATAURL falló', err)
             }
