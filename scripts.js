@@ -505,46 +505,39 @@ async function generarVoucher() {
     drawField('Saldo:', saldoStr)
 
     // Intentar cargar imagen discreta desde assets/foto.jpg
-    try {
-        const imgData = await loadImageDataUrlWithAlpha('assets/foto.jpg', 120, 60, 0.12)
-        // colocar en esquina superior derecha
-        doc.addImage(imgData, 'JPEG', 150, 8, 40, 22)
-    } catch (e) {
-        // Si falla (CORS o file://) intentar usar imagen embebida en `window.VOUCHER_IMAGE_DATAURL`
-        console.warn('No se pudo cargar assets/foto.jpg automáticamente:', e)
-        if (window.VOUCHER_IMAGE_DATAURL) {
-            try {
-                doc.addImage(window.VOUCHER_IMAGE_DATAURL, 'JPEG', 135, 8, 62, 39)
-            } catch (err) {
-                console.warn('addImage con VOUCHER_IMAGE_DATAURL falló', err)
-            }
+    // Si falla (CORS o file://) intentar usar imagen embebida en `window.VOUCHER_IMAGE_DATAURL`
+    if (window.VOUCHER_IMAGE_DATAURL) {
+        try {
+            doc.addImage(window.VOUCHER_IMAGE_DATAURL, 'JPEG', 135, 8, 62, 39)
+        } catch (err) {
+            console.warn('addImage con VOUCHER_IMAGE_DATAURL falló', err)
+        }
+    } else {
+        const input = document.getElementById('voucherImageInput')
+        if (!input) {
+            console.warn('No existe el input para seleccionar imagen de voucher')
         } else {
-            const input = document.getElementById('voucherImageInput')
-            if (!input) {
-                console.warn('No existe el input para seleccionar imagen de voucher')
-            } else {
-                // Esperar a que el usuario seleccione un archivo
-                const imgDataFromFile = await new Promise((resolve) => {
-                    const handler = async (ev) => {
-                        const file = ev.target.files && ev.target.files[0]
-                        input.removeEventListener('change', handler)
-                        input.value = ''
-                        if (!file) return resolve(null)
-                        try {
-                            const data = await loadImageDataUrlFromFile(file, 120, 60, 0.12)
-                            resolve(data)
-                        } catch (err) {
-                            console.warn('Error leyendo imagen seleccionada', err)
-                            resolve(null)
-                        }
+            // Esperar a que el usuario seleccione un archivo
+            const imgDataFromFile = await new Promise((resolve) => {
+                const handler = async (ev) => {
+                    const file = ev.target.files && ev.target.files[0]
+                    input.removeEventListener('change', handler)
+                    input.value = ''
+                    if (!file) return resolve(null)
+                    try {
+                        const data = await loadImageDataUrlFromFile(file, 120, 60, 0.12)
+                        resolve(data)
+                    } catch (err) {
+                        console.warn('Error leyendo imagen seleccionada', err)
+                        resolve(null)
                     }
-                    input.addEventListener('change', handler)
-                    input.click()
-                })
-
-                if (imgDataFromFile) {
-                    try { doc.addImage(imgDataFromFile, 'JPEG', 150, 8, 40, 22) } catch (err) { console.warn('addImage fallo', err) }
                 }
+                input.addEventListener('change', handler)
+                input.click()
+            })
+
+            if (imgDataFromFile) {
+                try { doc.addImage(imgDataFromFile, 'JPEG', 150, 8, 40, 22) } catch (err) { console.warn('addImage fallo', err) }
             }
         }
     }
