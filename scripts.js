@@ -490,10 +490,10 @@ async function generarVoucher() {
     }
 
     drawField('Casa:', casaName)
-    drawField('Cliente:', `${ext.nombre || ''} ${ext.apellido || ''}`)
+    drawField('Nombre:', `${ext.nombre || ''} ${ext.apellido || ''}`)
     // drawField('Fecha Inicio:', start ? fmt(new Date(start)) : '')
-    drawField('Fecha Inicio:', start ? `${fmt(new Date(start))} 09:00 am` : '')
-    drawField('Fecha Fin:', end ? `${fmt(new Date(end))} 13:00 pm` : '')
+    drawField('Check-in:', start ? `${fmt(new Date(start))} 13:00 pm` : '')
+    drawField('Check-out:', end ? `${fmt(new Date(end))} 09:00 am` : '')
     drawField('Personas:', ext.personas || '')
     drawField('Costo total:', formatCurrency(ext.costo))
     drawField('Seña:', formatCurrency(ext.sena))
