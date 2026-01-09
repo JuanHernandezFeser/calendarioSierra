@@ -14,6 +14,9 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
+    <!-- jsPDF para generar PDFs en cliente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -51,7 +54,7 @@
     <!-- MODAL RESERVAS-->
     <div class="modal" id="modalReservas" style="z-index: 999;">
         <div class="modal-content">
-            <h3>Nueva reserva</h3>
+            <h3 id="modalReservasTitle">Nueva reserva</h3>
 
             <select id="casaReserva" name="casa" required>
                 <option value="">Seleccionar casa</option>
@@ -87,11 +90,18 @@
             </div>
 
 
-            <button onclick="guardarReserva()">Guardar</button>
-            <button onclick="cerrarModalReservas()">Cancelar</button>
+            <button id="btnGuardarReserva" onclick="guardarReserva()">Guardar</button>
+            <button id="btnGuardarCambios" onclick="actualizarReserva()" style="display:none">Guardar cambios</button>
+            <button id="btnModificarReserva" onclick="iniciarEdicionReserva()" style="display:none">Modificar</button>
+            <button id="btnEliminarReserva" onclick="eliminarReserva()" style="display:none">Eliminar</button>
+            <button id="btnGenerarVoucher" onclick="generarVoucher()" style="display:none">Generar voucher</button>
+            <button id="btnCancelarReserva" onclick="cerrarModalReservas()">Cancelar</button>
         </div>
     </div>
     <!-- MODAL RESERVAS -->
+
+    <!-- Input oculto para seleccionar imagen local (fallback sin servidor) -->
+    <input type="file" id="voucherImageInput" accept="image/*" style="display:none">
 
     <!-- MODAL BLOQUEAR -->
     <div class="modal" id="modalBloquear" style="z-index: 999;">
@@ -119,5 +129,6 @@
 </body>
 
 <script src="scripts.js" defer></script>
+    <script src="assets/foto-dataurl.js"></script>
 
 </html>
